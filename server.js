@@ -9,11 +9,12 @@ const apiRoutes = require("./routes/api.js");
 const fccTestingRoutes = require("./routes/fcctesting.js");
 const runner = require("./test-runner");
 const connectDB = require("./config/db.js");
+const path = require("path");
 let app;
 async function start() {
   app = express();
 
-  app.use("/public", express.static(process.cwd() + "/public"));
+  app.use("/public", express.static(path.resolve("public")));
 
   app.use(cors({ origin: "*" })); //For FCC testing purposes only
 
@@ -24,12 +25,12 @@ async function start() {
     await connectDB.connect();
     //Sample front-end
     app.route("/:project/").get(function (req, res) {
-      res.sendFile(process.cwd() + "/views/issue.html");
+      res.sendFile(path.resolve("views", "issue.html"));
     });
 
     //Index page (static HTML)
     app.route("/").get(function (req, res) {
-      res.sendFile(process.cwd() + "/views/index.html");
+      res.sendFile(path.resolve("views", "index.html"));
     });
 
     //Routing for API
