@@ -11,8 +11,9 @@ body {
 .issue {
   margin: 20px auto;
   padding: 5px;
-  width: 60%;
+  width: 90%;
   border: 2px solid black;
+  max-width: 500px;
   text-align: center;
 }
 
@@ -22,6 +23,7 @@ body {
 
 .id {
   font-size: 14px;
+  word-break: break-all;
 }
 
 code {
