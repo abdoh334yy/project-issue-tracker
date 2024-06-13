@@ -10,6 +10,29 @@ Si se ingresa el nombre de un proyecto creado o no creado,la ruta redirigue a un
 
 ## Tabla de Contenidos
 
+- [Issue Tracker](#issue-tracker)
+  - [Tabla de Contenidos](#tabla-de-contenidos)
+  - [Requisitos](#requisitos)
+  - [Tests aprobados](#tests-aprobados)
+  - [Test funcionales creados](#test-funcionales-creados)
+    - [1.Create an issue with every field: POST request to /api/issues/{project}](#1create-an-issue-with-every-field-post-request-to-apiissuesproject)
+    - [2. Create an issue with only required fields: POST request to /api/issues/{project}](#2-create-an-issue-with-only-required-fields-post-request-to-apiissuesproject)
+    - [3.Create an issue with missing required fields: POST request to /api/issues/{project}](#3create-an-issue-with-missing-required-fields-post-request-to-apiissuesproject)
+    - [4.View issues on a project: GET request to /api/issues/{project}](#4view-issues-on-a-project-get-request-to-apiissuesproject)
+    - [5.View issues on a project with one filter: GET request to /api/issues/{project}.](#5view-issues-on-a-project-with-one-filter-get-request-to-apiissuesproject)
+    - [6.View issues on a project with multiple filters: GET request to /api/issues/{project}](#6view-issues-on-a-project-with-multiple-filters-get-request-to-apiissuesproject)
+    - [7.Update one field on an issue: PUT request to /api/issues/{project}](#7update-one-field-on-an-issue-put-request-to-apiissuesproject)
+    - [8.Update multiple fields on an issue: PUT request to /api/issues/{project}](#8update-multiple-fields-on-an-issue-put-request-to-apiissuesproject)
+    - [9.Update an issue with missing \_id: PUT request to /api/issues/{project}](#9update-an-issue-with-missing-_id-put-request-to-apiissuesproject)
+    - [10.Update an issue with no fields to update: PUT request to /api/issues/{project}](#10update-an-issue-with-no-fields-to-update-put-request-to-apiissuesproject)
+    - [11.Update an issue with an invalid \_id: PUT request to /api/issues/{project}](#11update-an-issue-with-an-invalid-_id-put-request-to-apiissuesproject)
+    - [12.Delete an issue: DELETE request to /api/issues/{project}](#12delete-an-issue-delete-request-to-apiissuesproject)
+    - [13.Delete an issue with an invalid \_id: DELETE request to /api/issues/{project}](#13delete-an-issue-with-an-invalid-_id-delete-request-to-apiissuesproject)
+    - [14.Delete an issue with missing \_id: DELETE request to /api/issues/{project}](#14delete-an-issue-with-missing-_id-delete-request-to-apiissuesproject)
+  - [Screenshots](#screenshots)
+    - [1. Home Page](#1-home-page)
+    - [2. Project Page](#2-project-page)
+
 ## Requisitos
 
 ![Imagen de Requisitos](./screenshots/requisitos.webp)
