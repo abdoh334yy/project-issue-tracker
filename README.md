@@ -13,6 +13,7 @@ Si se ingresa el nombre de un proyecto creado o no creado,la ruta redirige a un 
 - [Issue Tracker](#issue-tracker)
   - [Tabla de Contenidos](#tabla-de-contenidos)
   - [Requisitos](#requisitos)
+  - [Proyecto Aprobado](#proyecto-aprobado)
   - [Tests aprobados](#tests-aprobados)
   - [Test funcionales creados](#test-funcionales-creados)
     - [1.Create an issue with every field: POST request to /api/issues/{project}](#1create-an-issue-with-every-field-post-request-to-apiissuesproject)
@@ -36,6 +37,10 @@ Si se ingresa el nombre de un proyecto creado o no creado,la ruta redirige a un 
 ## Requisitos
 
 ![Imagen de Requisitos](./screenshots/requisitos.webp)
+
+## Proyecto Aprobado
+
+![Imagen de Proyecto Aprobado](./screenshots/proyecto_aprobado.webp)
 
 ## Tests aprobados
 
