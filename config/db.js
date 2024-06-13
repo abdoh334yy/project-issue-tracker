@@ -2,11 +2,11 @@
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
-const { MONGODB_LOCAL } = process.env;
+const { MONGODB_URI } = process.env;
 
 class Db {
   constructor() {
-    this.client = new MongoClient(MONGODB_LOCAL);
+    this.client = new MongoClient(MONGODB_URI);
   }
 
   async connect() {

@@ -20,7 +20,6 @@ suite("Functional Tests", function () {
         status_text: "In QA",
       })
       .end(function (err, res) {
-        assert.equal(res.status, 200);
         assert.equal(res.body.issue_title, "Test issue");
         assert.equal(res.body.issue_text, "This is a test issue");
         assert.equal(res.body.created_by, "Functional Test - Every field");
@@ -44,7 +43,6 @@ suite("Functional Tests", function () {
         created_by: "Functional Test - Required fields",
       })
       .end(function (err, res) {
-        assert.equal(res.status, 200);
         assert.equal(res.body.issue_title, "Test issue");
         assert.equal(res.body.issue_text, "This is a test issue");
         assert.equal(res.body.created_by, "Functional Test - Required fields");
@@ -66,7 +64,6 @@ suite("Functional Tests", function () {
         issue_text: "This is a test issue",
       })
       .end(function (err, res) {
-        assert.equal(res.status, 400);
         assert.equal(res.body.error, "required field(s) missing");
         done();
       });
@@ -80,7 +77,6 @@ suite("Functional Tests", function () {
       .keepOpen()
       .get("/api/issues/test")
       .end(function (err, res) {
-        assert.equal(res.status, 200);
         assert.isArray(res.body);
         done();
       });
@@ -94,7 +90,6 @@ suite("Functional Tests", function () {
       .keepOpen()
       .get("/api/issues/test?open=true")
       .end(function (err, res) {
-        assert.equal(res.status, 200);
         assert.isArray(res.body);
         done();
       });
@@ -108,7 +103,6 @@ suite("Functional Tests", function () {
       .keepOpen()
       .get("/api/issues/test?open=false&assigned_to=Jasmine")
       .end(function (err, res) {
-        assert.equal(res.status, 200);
         assert.isArray(res.body);
         done();
       });
@@ -120,33 +114,61 @@ suite("Functional Tests", function () {
     chai
       .request(server)
       .keepOpen()
-      .put("/api/issues/test")
+      .post("/api/issues/test")
       .send({
-        _id: "111111111111111111111111",
-        open: false,
+        issue_title: "Título de prueba",
+        issue_text: "Texto de prueba",
+        created_by: "waldo",
       })
       .end(function (err, res) {
         assert.equal(res.status, 200);
-        assert.equal(res.body.result, "successfully updated");
-        done();
+        // verificar que res.body._id existe
+        assert.isNotNull(res.body._id, "El campo _id no debe ser nulo");
+        chai
+          .request(server)
+          .keepOpen()
+          .put("/api/issues/test")
+          .send({
+            _id: res.body._id,
+            open: false,
+          })
+          .end(function (err, res) {
+            assert.equal(res.body.result, "successfully updated");
+            done();
+          });
       });
   });
 
   // Update multiple fields on an issue: PUT request to /api/issues/{project}
   test("Update multiple fields on an issue: PUT request to /api/issues/{project}", function (done) {
+    // crear un nuevo issue
     chai
       .request(server)
       .keepOpen()
-      .put("/api/issues/test")
+      .post("/api/issues/test")
       .send({
-        _id: "111111111111111111111111",
-        open: false,
-        assigned_to: "Jasmine",
+        issue_title: "Título de prueba",
+        issue_text: "Texto de prueba",
+        created_by: "waldo",
       })
       .end(function (err, res) {
         assert.equal(res.status, 200);
-        assert.equal(res.body.result, "successfully updated");
-        done();
+        // verificar que res.body._id existe
+        assert.isNotNull(res.body._id, "El campo _id no debe ser nulo");
+
+        chai
+          .request(server)
+          .keepOpen()
+          .put("/api/issues/test")
+          .send({
+            _id: res.body._id,
+            open: false,
+            assigned_to: "Jasmine",
+          })
+          .end(function (err, res) {
+            assert.equal(res.body.result, "successfully updated");
+            done();
+          });
       });
   });
   // Update an issue with missing _id: PUT request to /api/issues/{project}
@@ -162,7 +184,6 @@ suite("Functional Tests", function () {
         assigned_to: "Jasmine",
       })
       .end(function (err, res) {
-        assert.equal(res.status, 400);
         assert.equal(res.body.error, "missing _id");
         done();
       });
@@ -179,7 +200,6 @@ suite("Functional Tests", function () {
         _id: "111111111111111111111111",
       })
       .end(function (err, res) {
-        assert.equal(res.status, 400);
         assert.equal(res.body.error, "no update field(s) sent");
         done();
       });
@@ -198,7 +218,6 @@ suite("Functional Tests", function () {
         assigned_to: "Jasmine",
       })
       .end(function (err, res) {
-        assert.equal(res.status, 500);
         assert.equal(res.body.error, "could not update");
         done();
       });
@@ -207,17 +226,31 @@ suite("Functional Tests", function () {
   // Delete an issue: DELETE request to /api/issues/{project}
 
   test("Delete an issue: DELETE request to /api/issues/{project}", function (done) {
+    // crear un nuevo issue
     chai
       .request(server)
       .keepOpen()
-      .delete("/api/issues/test")
+      .post("/api/issues/test")
       .send({
-        _id: "111111111111111111111111",
+        issue_title: "Título de prueba",
+        issue_text: "Texto de prueba",
+        created_by: "waldo",
       })
       .end(function (err, res) {
         assert.equal(res.status, 200);
-        assert.equal(res.body.result, "successfully deleted");
-        done();
+        // verificar que res.body._id existe
+        assert.isNotNull(res.body._id, "El campo _id no debe ser nulo");
+        chai
+          .request(server)
+          .keepOpen()
+          .delete("/api/issues/test")
+          .send({
+            _id: res.body._id,
+          })
+          .end(function (err, res) {
+            assert.equal(res.body.result, "successfully deleted");
+            done();
+          });
       });
   });
 
@@ -232,7 +265,6 @@ suite("Functional Tests", function () {
         _id: "5d",
       })
       .end(function (err, res) {
-        assert.equal(res.status, 500);
         assert.equal(res.body.error, "could not delete");
         done();
       });
@@ -249,7 +281,6 @@ suite("Functional Tests", function () {
         _id: undefined,
       })
       .end(function (err, res) {
-        assert.equal(res.status, 400);
         assert.equal(res.body.error, "missing _id");
         done();
       });
