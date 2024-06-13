@@ -6,7 +6,7 @@ En el path siguiente:
 
 > **/api/issues/{project_name}**
 
-Si se ingresa el nombre de un proyecto creado o no creado,la ruta redirigue a un formulario en el cual se puede crear nuevas issues, modificar o eliminar issues. Cuando se crea una nueva issue para algún proyecto en la misma página se muestra un listado de las issues creadas y sus atributos.
+Si se ingresa el nombre de un proyecto creado o no creado,la ruta redirige a un formulario en el cual se puede crear nuevos issues, modificar o eliminar issues. Cuando se crea un nuevo issue para algún proyecto, en la misma página se muestra un listado de las issues creadas y sus atributos.
 
 ## Tabla de Contenidos
 
